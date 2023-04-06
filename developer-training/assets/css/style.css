@@ -1,0 +1,135 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+.container{
+    width: 80%;
+    margin: auto;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+   
+  }
+  li {
+    float: left;
+    text-decoration: none;
+  }
+  a{
+    text-decoration: none;
+  }
+  .heading1{
+    float:left;
+    font-size: 24px;
+    text-decoration: none;
+    margin-left: 12%;
+}
+.heading2{
+    float:right;
+    font-size: 12px;
+    font-weight: bold;
+    color: #E5E7EB ;
+    text-decoration: none;
+    position:relative;
+    top:15px;
+    padding:5px;
+    right: 10%;
+}
+.imageContainer{
+    position: relative;
+    width: 100%;
+    margin: auto;
+}
+.image{
+    position: absolute;
+    width: 100%;
+    display: none;
+}
+.arrow{
+    position: absolute;
+    background-color: white;
+    padding: 20px;
+    cursor: pointer;
+}
+.next{
+    right: 0;
+}
+#imageContainer{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.main-slider{
+    width:50%;
+}
+.main-slider img{
+    width: 100%;
+    height: 100%;
+}
+.side-images{
+    width: 24%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.static-images{
+    width: 100%;
+    height: 49%;
+}
+.static-images img{
+    width:100%;
+    height: 100%;
+}
+.search-container{
+    width:70%;
+    margin: auto;
+}
+.search{
+    display: block;
+    margin: auto;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 60px;
+    font-size: 30px;
+}
+.main-slider{
+    position: relative;
+}
+.slider-card{
+    position:absolute;
+    height: 100%;
+}
+.slider-card img{
+    height: 100%;
+}
+.info p{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    color:white;
+    background-color: hsla(0,0%,0%,0.5);
+}
+.info{
+    width:100%;
+    position: absolute;
+    top:40%;
+}
+#title{
+    font-size: 30px;
+    font-weight: bold;
+}
+#des{
+    font-size: 12px;
+}
+.search-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.post-card{
+    margin-top: 20px;
+    width: 40%;
+}
