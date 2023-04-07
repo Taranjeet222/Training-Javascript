@@ -132,4 +132,33 @@ ul {
 .post-card{
     margin-top: 20px;
     width: 40%;
+    transition: transform 0.3s ease-in-out;
+}
+.post-card img{
+    width: 100%;
+}
+.search{
+    width:70%;
+    margin: auto;
+    margin-top: 30px;
+}
+.navigation{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.navigation button{
+    font-size: 30px;
+    width: 40px;
+    word-spacing: 5px;
+    animation: fade-in 0.5s ease-in-out forwards;
+}
+.navigation button:hover{
+    background-color: red;
+}
+.active{
+    background-color: aqua;
+}
+.inactive{
+    background-color: #E5E7EB;
 }
