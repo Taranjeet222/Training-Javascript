@@ -51,10 +51,9 @@ class posts{
     }
 }
 var post = new posts(jsonData.posts);
-console.log(post);
 class generateposts{
     constructor(){
-        this.currentpage =2;
+        this.currentpage =1;
         this.post_page = 4;
         this.start = (this.currentpage-1)*this.post_page;
         this.end = this.start + this.post_page;
@@ -76,12 +75,12 @@ class generateposts{
                 var comment = post.comment[i];
                 card.innerHTML = `
                 <img src="${source}">
-                <p>${title}</p>
-                <p>${des}</p>
-                <p>${category}</p>
-                <p>${datetime}</p>
-                <p>${author}</p>
-                <p>${comment}</p>
+                <p id="category">${category}</p>
+                <p id="posttitle">${title}</p>
+                <p id="comment">${comment} Comments</p>
+                <p id="author">/By:${author}</p>
+                <p id="datetime">${datetime}</p>
+                <p id="postdes">${des}</p>
                 `;
                 container.appendChild(card);
             }
@@ -90,12 +89,23 @@ class generateposts{
     displaynavigation() {
         var nav_container = document.getElementsByClassName("navigation")[0];
         nav_container.innerHTML = ``;
+        let activeButton = null;
         console.log(Math.ceil(this.total / this.post_page));
         for (let i = 0; i < Math.ceil(this.total / this.post_page); i++) {
           let no = i + 1;
           var nvbar = document.createElement("button");
+          nvbar.classList.add("navigation_btn");
+          nvbar.classList.add("inactive");
           nvbar.setAttribute("data-no", no);
-          nvbar.addEventListener("click", () => {
+          nvbar.addEventListener("click", (event) => {
+            if(activeButton!==null)
+            {
+                activeButton.classList.remove("active");
+                activeButton.classList.add("inactive");
+            }
+            event.target.classList.remove("inactive");
+            event.target.classList.add("active");
+            activeButton = event.target;
             this.currentpage = no;
             this.start = (this.currentpage - 1) * this.post_page;
             this.end = this.start + this.post_page;
@@ -103,6 +113,13 @@ class generateposts{
           });
           nvbar.innerHTML = `${no}`;
           nav_container.appendChild(nvbar);
+        }
+        if(this.total>0)
+        {
+            var firstbtn = document.getElementsByClassName("navigation_btn")[0];
+            firstbtn.classList.remove("inactive");
+            firstbtn.classList.add("active");
+            activeButton = firstbtn;
         }
     }
 }
@@ -140,7 +157,6 @@ class search {
       get_post.start = (get_post.currentpage-1)*get_post.post_page;
       get_post.end = get_post.start + get_post.post_page;
       post = filteredposts;
-      console.log(post);
       get_post.displayPosts();
       get_post.displaynavigation();
     }

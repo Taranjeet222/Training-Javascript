@@ -94,6 +94,8 @@ ul {
     width: 100%;
     margin-top: 60px;
     font-size: 30px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 .main-slider{
     position: relative;
@@ -101,6 +103,7 @@ ul {
 .slider-card{
     position:absolute;
     height: 100%;
+    width: 100%;
 }
 .slider-card img{
     height: 100%;
@@ -131,11 +134,15 @@ ul {
 }
 .post-card{
     margin-top: 20px;
-    width: 40%;
+    width: 48%;
     transition: transform 0.3s ease-in-out;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
+    position: relative;
 }
 .post-card img{
     width: 100%;
+    border-radius: 5px;
 }
 .search{
     width:70%;
@@ -146,19 +153,91 @@ ul {
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    margin-bottom:20px;
 }
-.navigation button{
+.navigation_btn{
     font-size: 30px;
     width: 40px;
     word-spacing: 5px;
     animation: fade-in 0.5s ease-in-out forwards;
 }
-.navigation button:hover{
-    background-color: red;
+.navigation_button:hover{
+    background-color: rgb(89, 97, 243);
 }
 .active{
-    background-color: aqua;
+    font-size: 30px;
+    width: 40px;
+    word-spacing: 5px;
+    animation: fade-in 0.5s ease-in-out forwards;
+    color: yellow;
+    background-color: rgb(89, 97, 243);
 }
 .inactive{
+    color: rgb(89, 97, 243);
     background-color: #E5E7EB;
+}
+.arrows{
+    position: absolute;
+    right:5px;
+    color: grey;
+    font-size:20px;
+    font-weight: bolder;
+    bottom: 20px;
+}
+#posttitle{
+    font-size:20px;
+    margin-top:10px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+#category{
+    position: absolute;
+    right: 0px;
+    transform: translate(-5%,-80%);
+    background-color: rgb(89, 97, 243);
+    border-radius: 5px;
+    width: 17%;
+    text-align: center;
+    color: yellow;
+}
+#comment{
+    position: absolute;
+    right:4px;
+    color: green;
+    font-weight: 600;
+    margin-top: 10px;
+}
+#author{
+    position: absolute;
+    margin-left: 23%;
+    font-size: 13px;
+    font-weight: 400;
+    margin-top: 10px;
+    color: rgb(65, 65, 65);
+}
+#datetime{
+    font-size: 13px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+#postdes{
+    margin-top: 20px;
+    font-size: 15px;
+    padding: 10px;
+    font-weight: 500;
+}
+@media (max-width:650px){
+    *{
+        padding:0;
+        margin: 0;
+    }
+    #imageContainer{
+        display: none;
+    }
+    .search-container{
+        flex-direction: column;
+    }
+    .post-card{
+        width: 100%;
+    }
 }
