@@ -84,3 +84,6 @@ displayImages();
 let slider = new Slider();
 console.log(slider.flag);
 slider.slideshow(slider.flag);
+function myFunction(x) {
+    x.classList.toggle("change");
+}
