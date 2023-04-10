@@ -33,11 +33,13 @@ function displayImages() {
       var source = '.' + sl.images[i];
       var title = sl.title[i];
       var des = sl.des[i];
+      title = title.toUpperCase();
       card.innerHTML = `
       <img src="${source}">
       <div class="info">
-        <p id="title">"${title}"</p>
+        <p id="title">${title}</p>
         <p id="des">${des}</p>
+        <p id="readmore"><a href="https://www.youtube.com/" target="_blank">READ MORE&#8594</a></p>
       </div>
       <div class="arrows">
         <span onclick = "slider.controller(-1)">&#8592;</span>

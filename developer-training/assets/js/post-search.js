@@ -51,6 +51,27 @@ class posts{
     }
 }
 var post = new posts(jsonData.posts);
+function timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    month = month.toUpperCase();
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time;
+    if(hour>12)
+    {
+        hour -= 12;
+        time = date + ' ' + month + ', ' + year + ' ' + hour + ':' + min + " p.m.";
+    }
+    else{
+        time = date + ' ' + month + ', ' + year + ' ' + hour + ':' + min + " a.m.";
+    }
+    return time;
+}
 class generateposts{
     constructor(){
         this.currentpage =1;
@@ -71,8 +92,10 @@ class generateposts{
                 var des = post.desc[i];
                 var category = post.category[i];
                 var datetime = post.datetime[i];
+                datetime = timeConverter(datetime);
                 var author = post.author[i];
                 var comment = post.comment[i];
+                category = category.toUpperCase();
                 card.innerHTML = `
                 <img src="${source}">
                 <p id="category">${category}</p>
