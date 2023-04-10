@@ -98,6 +98,10 @@ ul {
     font-size: 30px;
     padding: 10px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-image: url("../../TASK/search-icon.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding-left: 55px;
 }
 .main-slider{
     position: relative;
@@ -385,5 +389,8 @@ ul {
     .navigation_btn{
         font-size:20px;
         width:30px;
+    }
+    #category{
+        width: 22%;
     }
 }
