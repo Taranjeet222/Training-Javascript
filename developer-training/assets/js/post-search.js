@@ -98,12 +98,13 @@ class generateposts{
                 category = category.toUpperCase();
                 card.innerHTML = `
                 <img src="${source}">
-                <p id="category">${category}</p>
-                <p id="posttitle">${title}</p>
-                <p id="comment">${comment} Comments</p>
-                <p id="author">/By:${author}</p>
-                <p id="datetime">${datetime}</p>
-                <p id="postdes">${des}</p>
+                <div class="postcard-info">
+                    <p id="category">${category}</p>
+                    <p id="posttitle">${title}</p>
+                    <p id="comment">${comment} Comments</p>
+                    <span id="datetime">${datetime} / By: ${author}</span>
+                    <p id="postdes">${des}</p>
+                </div>
                 `;
                 container.appendChild(card);
             }
