@@ -1,0 +1,29 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+}
+body{
+    background-color: black;
+}
+.container{
+    width: 90%;
+    margin: auto;
+}
+.header{
+    color:rgb(243, 242, 242)
+}
+.card{
+    width: 50%;
+    margin: auto;
+    background-color:#00DDFF;
+    color: rgb(0, 0, 0);
+    margin-top:50px;
+}
+
+.btn{
+    background-color: rgb(0, 0, 0);
+}
+.btn:hover{
+    background-color: #01145f;
+}

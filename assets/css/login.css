@@ -1,0 +1,36 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+}
+body{
+    background-color: black;
+}
+.card{
+    width: 35%;
+    margin: auto;
+    background-color:#00DDFF;
+    color: rgb(0, 0, 0);
+    margin-top:6%;
+}
+label{
+    display: block !important;
+    text-align: left;
+    font-size: 20px;
+}
+button{
+    background-color: black !important;
+    margin-top: 10px;
+}
+span{
+    font-weight: 600;
+}
+a{
+    color: black;
+}
+a:hover{
+    color: rgb(77, 77, 77) !important;
+}         
+#forgot-form{
+    margin-top: 4%;
+}

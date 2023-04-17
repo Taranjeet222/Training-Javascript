@@ -1,0 +1,27 @@
+*{
+    padding:0px;
+    margin: 0px;
+    overflow: hidden;
+}
+body{
+    background-color: rgb(0, 0, 0);
+}
+.card{
+    width: 35%;
+    margin: auto;
+    background-color:#00DDFF;
+    color: rgb(0, 0, 0);
+    margin-top:4%;
+}
+label{
+    display: block !important;
+    text-align: left;
+    font-size: 20px;
+}
+button{
+    background-color: black;
+    margin-top: 10px;
+}
+#submit{
+    margin-top:15px;
+}
