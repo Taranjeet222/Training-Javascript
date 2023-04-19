@@ -5,6 +5,8 @@
     error_reporting(E_ALL);
     ini_set('error_log', '/var/www/php.dv/logs/error.log');
     include '../includes/validation.php';
+    include '../includes/database.php';
+    include '../includes/user.php';
     $valid = new Validator();
     $nameError = '';
     $usernameError = '';
@@ -12,19 +14,27 @@
     $emailError = '';
     $passwordError = '';
     $confirmPasswordError = '';
-
     if (isset($_POST['submit-btn'])) {
         $nameError = $valid->validateName($_POST['name']);
         $usernameError = $valid->validateUsername($_POST['Username']);
         $phoneError = $valid->validatePhoneNumber($_POST['Phone']);
         $emailError = $valid->validateEmail($_POST['email']);
         $passwordError = $valid->validatePassword($_POST['Password']);
-        $confirmPasswordError = $valid->validateConfirmPassword($_POST['Password'],$_POST['confirm-password']);
+        $confirmPasswordError = $valid->validateConfirmPassword($_POST['Password'],$_POST['confirmPassword']);
         if ($nameError && $usernameError && $phoneError && $emailError && $passwordError && $confirmPasswordError) {
             //create user code,data insertion.// session variables set.
+            // $host = "localhost";
+            // $username = "root";
+            // $password = "Taranjeet@23";
+            // $dbname = "USER";
+            $tablename = "userdata";
+            // $db = new Database($host,$username,$password,$dbname);
+            $USR = new User();
+            $USR->login($_POST['Username'],$tablename);
+            // $USR->registerUser($db->getConnection(),$tablename,$_POST['name'],$_POST['Username'],$_POST['Phone'],$_POST['Age'],$_POST['email'],$_POST['Password']);
             header("Location: ../index.php");
         }
-    }  
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,6 +50,12 @@
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
     <script src="../assets/js/validation.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          var registerForm = new validateForm('registerForm');
+          registerForm.addInputListeners();
+      });
+    </script>
     <title>Document</title>
 </head>
 <body>

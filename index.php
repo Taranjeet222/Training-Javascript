@@ -28,7 +28,15 @@ error_log(print_r($_POST,1));
             <h3>Introduction</h3>
         </div>
         <div class="card-body">
-            <h4 class="card-title">Welcome to Name!!</h4>
+            <?php
+            if(isset($_SESSION['username']))
+            {
+                echo '<h4 class="card-title">Hi ' . $_SESSION['username'] . '!</h4>';
+            }
+            else{
+                echo '<h4 class="card-title">Welcome to Name!!</h4>';   
+            }
+            ?>
             <p class="card-text">
                 *Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus elementum*
 
@@ -54,9 +62,39 @@ error_log(print_r($_POST,1));
 
                 *commodo, cursus turpis pulvinar, volutpat odio.*
             </p>
-            <p class="card-text">Read More...</p>
-            <a href="./login/login.php" class="btn btn-primary">Login</a>
-            <a href="./register/register.php" class="btn btn-primary">Register</a>
+            <?php
+            if(isset($_SESSION['username']))
+            {
+                echo '<p class="card-text">*Sed vitae turpis ac nisi malesuada blandit. Quisque eu molestie eros. Donec*
+
+                *facilisis hendrerit augue, eu adipiscing sem lacinia non. Integer*
+                
+                *sodales purus odio, non pharetra massa accumsan in. In vitae nunc non*
+                
+                *erat posuere tempus a id ipsum. Suspendisse enim augue, bibendum eget*
+                
+                *nunc in, lacinia ultrices tortor. Nam enim lorem, gravida eget varius*
+                
+                *eu, euismod et purus. Etiam egestas sem eu nisi porttitor pharetra.*
+                
+                *Donec eu libero eu lorem convallis porta. Nullam interdum vitae lorem*
+                
+                *sit amet dignissim. Proin sit amet tortor ac odio varius dapibus nec at*
+                
+                *Sem.*</p>';
+            }
+            else
+            echo '<p class="card-text">Read More...</p>';
+            ?>
+            <?php
+            if(isset($_SESSION['username'])) {
+                echo '<a href="./edit/edit.php" class="btn btn-primary crd">Edit Account</a>';
+                echo '<a href="./logout/logout.php" class="btn btn-primary crd">Logout</a>';
+            } else {
+                echo '<a href="./login/login.php" class="btn btn-primary crd">Login</a>';
+                echo '<a href="./register/register.php" class="btn btn-primary crd">Register</a>';
+            }
+            ?>
         </div>
     </div>
 </body>

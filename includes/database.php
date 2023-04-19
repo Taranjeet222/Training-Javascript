@@ -1,6 +1,4 @@
 <?php
-session_start();
-echo "Please wait while we process your request...";
 #$host = "172.26.153.159";
 class Database {
     private $host;
@@ -32,18 +30,8 @@ class Database {
         $this->conn = null;
     }
 
-    public function createDatabase(){
-        $sql = "CREATE DATABASE User";
-        try {
-            $this->conn->exec($sql);
-            echo "Database created successfully";
-        } catch(PDOException $e) {
-            echo "Error creating database: " . $e->getMessage();
-        }
-    }
-
-    public function createTable(){
-        $sql = "CREATE TABLE userInfo (,
+    public function createTable($tablename){
+        $sql = "CREATE TABLE $tablename (
             fullname VARCHAR(255) NOT NULL,
             username VARCHAR(50) NOT NULL UNIQUE,
             phone_number VARCHAR(20) NOT NULL,
@@ -53,21 +41,20 @@ class Database {
         )";
         try {
             $this->conn->exec($sql);
-            echo "Table userInfo created successfully";
+            echo "Table $tablename created successfully";
         } catch(PDOException $e) {
             echo "Error creating table: " . $e->getMessage();
         }
     }
-    public function insertData($fullname,$username,$phone_number,$age,$email,$user_password){
-        $sql = "INSERT INTO userInfo (fullname,username,phone_number,age,email,user_password) VALUES (?,?,?,?,?,?)";
+    public function deleteTable($tablename){
+        $sql = "DROP TABLE $tablename";
         try {
-            $stmt = $this->conn->prepare($sql);
-            $stmt->execute([$fullname, $username, $phone_number, $age, $email, $user_password]);
-            echo "New record created successfully";
+            $this->conn->exec($sql);
+            echo "Table $tablename created successfully";
         } catch(PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            echo "Error creating table: " . $e->getMessage();
         }
     }
 }
-header("Location: ../index.php");
+
 ?>

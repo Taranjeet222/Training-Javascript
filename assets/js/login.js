@@ -16,7 +16,7 @@ class forgotPassword{
                     <form>
                         <div class="form-group">
                             <label for="Username">Email</label>
-                            <input type="text" class="form-control" id="Username" placeholder="Enter your email">
+                            <input type="text" class="form-control" id="email" placeholder="Enter your email">
                         </div>
                         <input type="submit" class="btn btn-primary" value="Send me Password">
                     </form>
@@ -26,6 +26,8 @@ class forgotPassword{
             {
                 document.body.appendChild(infoForm);
                 this.clicked = true;
+                var firstForm = document.getElementById("FirstForm");
+                firstForm.style.display = 'none';
             }
         });
     }
