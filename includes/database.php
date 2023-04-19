@@ -58,7 +58,6 @@ class Database {
             echo "Error creating table: " . $e->getMessage();
         }
     }
-
     public function insertData($fullname,$username,$phone_number,$age,$email,$user_password){
         $sql = "INSERT INTO userInfo (fullname,username,phone_number,age,email,user_password) VALUES (?,?,?,?,?,?)";
         try {
