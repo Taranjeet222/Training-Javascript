@@ -1,16 +1,16 @@
 *{
-    padding:0px;
-    margin: 0px;
+    padding:0;
+    margin: 0;
     overflow: hidden;
 }
 body{
-    background-color: rgb(0, 0, 0);
+    background-image: url('../IMAGES/109428.jpg');
+    background-repeat: no-repeat;
 }
 .card{
     width: 35%;
     margin: auto;
-    background-color:#00DDFF;
-    color: rgb(0, 0, 0);
+    color: white;
     margin-top:4%;
 }
 label{

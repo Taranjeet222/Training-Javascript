@@ -23,15 +23,14 @@
         $confirmPasswordError = $valid->validateConfirmPassword($_POST['Password'],$_POST['confirmPassword']);
         if ($nameError && $usernameError && $phoneError && $emailError && $passwordError && $confirmPasswordError) {
             //create user code,data insertion.// session variables set.
-            // $host = "localhost";
-            // $username = "root";
-            // $password = "Taranjeet@23";
-            // $dbname = "USER";
+            $host = "localhost";
+            $username = "root";
+            $password = "Taranjeet@23";
+            $dbname = "USER";
             $tablename = "userdata";
-            // $db = new Database($host,$username,$password,$dbname);
+            $db = new Database($host,$username,$password,$dbname);
             $USR = new User();
-            $USR->login($_POST['Username'],$tablename);
-            // $USR->registerUser($db->getConnection(),$tablename,$_POST['name'],$_POST['Username'],$_POST['Phone'],$_POST['Age'],$_POST['email'],$_POST['Password']);
+            $USR->registerUser($db->getConnection(),$tablename,$_POST['name'],$_POST['Username'],$_POST['Phone'],$_POST['Age'],$_POST['email'],$_POST['Password']);
             header("Location: ../index.php");
         }
     }
@@ -58,8 +57,8 @@
     </script>
     <title>Document</title>
 </head>
-<body>
-<div class="card text-center">
+<body class="bg-dark">
+<div class="card text-center bg-dark bg-gradient">
   <div class="card-body">
     <h2 class="card-title">Register</h2>
     <form action="register.php" method="post" id="registerForm">

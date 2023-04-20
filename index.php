@@ -23,7 +23,7 @@ error_log(print_r($_POST,1));
             <h1>Header Logo</h1>
         </div>
     </div>
-    <div class="card text-center">
+    <div class="card text-center bg-dark bg-gradient">
         <div class="card-header">
             <h3>Introduction</h3>
         </div>

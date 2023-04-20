@@ -1,5 +1,24 @@
 <?php
 session_start();
+include '../includes/database.php';
+include '../includes/user.php';
+if(isset($_POST['Username']) && isset($_POST['Password']))
+{
+  $host = "localhost";
+  $username = "root";
+  $password = "Taranjeet@23";
+  $dbname = "USER";
+  $tablename = "userdata";
+  $db = new Database($host,$username,$password,$dbname);
+  $USR = new User();
+  $connec = $db->getConnection();
+  $USR->login($_POST['Username'],$_POST['Password'],$connec,$tablename);
+  echo $_SESSION['username'];
+  if(isset($_SESSION['username'])){
+    echo "<script>Logged in successfully.</script>";
+    header('Location: ../index.php');
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,20 +30,31 @@ session_start();
       <script src="../bootstrap.min.js"></script>
       <link rel="stylesheet" href="../assets/css/login.css">
       <script src="../assets/js/login.js"></script>
+      <script src="../assets/js/validation.js"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var registerForm = new validateForm('loginForm');
+            registerForm.addInputListeners();
+            forgotPassword.sendEmail();
+        });
+      </script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <title>Document</title>
   </head>
-  <body onload="forgot.addForm()">
-    <div class="card text-center" id="FirstForm">
+  <body onload="forgot.addForm()" class="bg-dark">
+    <div class="card text-center bg-light bg-gradient" id="FirstForm">
       <div class="card-body" >
         <h2 class="card-title">Login</h2>
-        <form>
+        <form action="login.php" method="post" id="loginForm">
           <div class="form-group">
             <label for="Username">Username</label>
-            <input type="text" class="form-control" id="Username" placeholder="Enter your username">
+            <input type="text" name="Username" class="form-control" id="Username" placeholder="Enter your username">
+            <div id="nameError" class="error"></div>
           </div>
           <div class="form-group">
             <label for="Password">Password</label>
-            <input type="password" class="form-control" id="Age" placeholder="Enter your password">
+            <input type="password" name="Password" class="form-control" id="password" placeholder="Enter your password">
+            <div id="nameError" class="error"></div>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
