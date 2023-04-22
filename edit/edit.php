@@ -10,7 +10,7 @@
     $db = new Database($host,$username,$password,$dbname);
     $USR = new User();
     $connec = $db->getConnection();
-    if(isset($_POST['submit-btn']))
+    if($_SERVER['REQUEST_METHOD']==='POST')
     {
         $USR->updateUserInfo($connec,$tablename,$_SESSION['username'],'fullname',$_POST['name']);
         $USR->updateUserInfo($connec,$tablename,$_SESSION['username'],'phone_number',$_POST['Phone']);
@@ -19,13 +19,11 @@
         $USR->updateUserInfo($connec,$tablename,$_SESSION['username'],'user_password',$_POST['Password']);
         $USR->updateUserInfo($connec,$tablename,$_SESSION['username'],'username',$_POST['Username']);
         $_SESSION['username'] = $_POST['Username'];
-        echo '<script>alert("Information updated successfully.")</script>';
     }
     $result = $USR->getUserInfo($connec,$_SESSION['username'],$_SESSION['tablename']);
     if(isset($_POST['delete']))
     {
         $USR->deleteUser($connec,$_SESSION['username'],$tablename);
-        echo "yay working";
         header('location: ../index.php');
     }
 ?>
@@ -40,6 +38,8 @@
     <link rel="stylesheet" href="../assets/css/register.css">
     <script src="../bootstrap.min.js"></script>
     <script src="../assets/js/validation.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.min.js"></script>
     <script>
         function confirmSubmit()
         {
@@ -56,6 +56,7 @@
       document.addEventListener('DOMContentLoaded', function() {
           var registerForm = new validateForm('EditForm');
           registerForm.addInputListeners();
+          validateForm.showChangesalert('EditForm','submit-btn');
       });
     </script>
 	<title>Page Title</title>
@@ -103,7 +104,7 @@
                         <input type="password" name="confirmPassword" class="form-control" id="confirmPassword" placeholder="Confirm password" value="<?php echo $result['user_password']; ?>" required>
                         <div id="confirmPasswordError" class="error"></div>
                     </div>
-                    <button type="submit" name="submit-btn" class="btn btn-primary" style="margin-top:10px !important;">Save Changes</button>
+                    <button type="submit" name="submit-btn" id="submit-btn" class="btn btn-primary" style="margin-top:10px !important;">Save Changes</button>
                     <a href="../index.php" class="btn btn-primary " style="margin-top:10px !important;">Exit</a>
                 </form>
             </div>
@@ -122,7 +123,7 @@
                     By deleting your account, you agree to release us from any liability or responsibility related to 
                     your use of the website or the consequences of deleting your account.
                     </p>
-                    <input type='submit' value='Delete Account' class="btn btn-primary" name='delete' onClick='return confirmSubmit()'>
+                    <input type='submit' value='Delete Account' id='delete' class="btn btn-primary" name='delete' onclick='return confirmSubmit()'>
                 </form>
             </div>
         </div>

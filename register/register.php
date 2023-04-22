@@ -31,7 +31,14 @@
             $db = new Database($host,$username,$password,$dbname);
             $USR = new User();
             $USR->registerUser($db->getConnection(),$tablename,$_POST['name'],$_POST['Username'],$_POST['Phone'],$_POST['Age'],$_POST['email'],$_POST['Password']);
-            header("Location: ../index.php");
+            if(isset($_SESSION['username'])){
+              if (isset($_POST['rememberMe'])) {
+                echo "setting";
+                $cookie_value = $_SESSION['username'] . ":" . $_SESSION['password'] . ":" . $_SESSION['tablename'];
+                setcookie('value',$cookie_value,time()+60*60*24*10,'/', '', false, false);
+              }
+              header('Location: ../index.php');
+            }
         }
     }
 ?>
@@ -96,6 +103,10 @@
         <label for="confirmPassword">Confirm password</label>
         <input type="password" name="confirmPassword" class="form-control" id="confirmPassword" placeholder="Confirm password" required>
         <div id="confirmPasswordError" class="error"></div>
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
+        <label class="form-check-label" for="rememberMe">Remember me</label>
       </div>
       <input type="submit" name="submit-btn" id="submit" class="btn btn-primary" value="submit" >
     </form>

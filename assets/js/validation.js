@@ -55,7 +55,7 @@ class validateForm{
                 break;
             case 'confirmPassword':
                 if(value!==document.getElementById('password').value && value!==''){
-                    this.showError(input,'Input not equal to password')
+                    this.showError(input,'Password Confirmation does not match')
                     return false;
                 }
             default:
@@ -64,6 +64,22 @@ class validateForm{
         console.log("true");
         this.clearError(input);
         return true;
+    }
+    static showChangesalert(formid,buttonid){
+        var btn = document.getElementById(buttonid);
+        var form = document.getElementById(formid); 
+        btn.addEventListener('click',(e)=>{
+            e.preventDefault();
+            Swal.fire({
+                title: 'Changes saved!',
+                text: 'Your changes have been saved successfully.',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                    
+            }).then(()=>{
+                form.submit();
+            });
+        });
     }
     showError(input,message){
         var err = input.nextElementSibling;

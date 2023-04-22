@@ -13,9 +13,12 @@ if(isset($_POST['Username']) && isset($_POST['Password']))
   $USR = new User();
   $connec = $db->getConnection();
   $USR->login($_POST['Username'],$_POST['Password'],$connec,$tablename);
-  echo $_SESSION['username'];
   if(isset($_SESSION['username'])){
-    echo "<script>Logged in successfully.</script>";
+    if (isset($_POST['rememberMe'])) {
+      echo "setting";
+      $cookie_value = $_SESSION['username'] . ":" . $_SESSION['password'] . ":" . $_SESSION['tablename'];
+      setcookie('value',$cookie_value,time()+60*60*24*10,'/', '', false, false);
+    }
     header('Location: ../index.php');
   }
 }
@@ -30,18 +33,15 @@ if(isset($_POST['Username']) && isset($_POST['Password']))
       <script src="../bootstrap.min.js"></script>
       <link rel="stylesheet" href="../assets/css/login.css">
       <script src="../assets/js/login.js"></script>
-      <script src="../assets/js/validation.js"></script>
       <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var registerForm = new validateForm('loginForm');
-            registerForm.addInputListeners();
             forgotPassword.sendEmail();
         });
       </script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <title>Document</title>
   </head>
-  <body onload="forgot.addForm()" class="bg-dark">
+  <body onload="forgot.addForm()">
     <div class="card text-center bg-light bg-gradient" id="FirstForm">
       <div class="card-body" >
         <h2 class="card-title">Login</h2>
@@ -54,7 +54,18 @@ if(isset($_POST['Username']) && isset($_POST['Password']))
           <div class="form-group">
             <label for="Password">Password</label>
             <input type="password" name="Password" class="form-control" id="password" placeholder="Enter your password">
-            <div id="nameError" class="error"></div>
+            <div id="nameError" class="error">
+              <?php
+                if(isset($_POST['Username']) && isset($_POST['Password']))
+                {
+                  echo '<span style="color:red;">Username or Password is incorrect.</span>';
+                }
+              ?>
+            </div>
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
+            <label class="form-check-label" for="rememberMe">Remember me</label>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>

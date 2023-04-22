@@ -5,6 +5,13 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 ini_set('error_log', '/var/www/php.dv/logs/error.log');
 error_log(print_r($_POST,1));
+if(isset($_COOKIE['value']))
+{
+    list($uname,$pass,$table) = explode(':',$_COOKIE['value']);
+    $_SESSION['username'] = $uname;
+    $_SESSION['password'] = $pass;
+    $_SESSION['tablename'] = $table;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
